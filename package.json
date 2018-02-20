@@ -1,6 +1,6 @@
 {
   "name": "solidity-array-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Array utils for Solidity.",
   "directories": {
     "test": "test"
