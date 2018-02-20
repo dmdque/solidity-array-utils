@@ -1,0 +1,31 @@
+{
+  "name": "solidity-array-utils",
+  "version": "0.0.1",
+  "description": "Array utils for Solidity.",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmdque/solidity-array-utils.git"
+  },
+  "keywords": [
+    "solidity",
+    "array",
+    "util",
+    "tool",
+    "helper"
+  ],
+  "author": "dmdque",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dmdque/solidity-array-utils/issues"
+  },
+  "homepage": "https://github.com/dmdque/solidity-array-utils#readme",
+  "devDependencies": {
+    "truffle": "^4.0.6"
+  }
+}
