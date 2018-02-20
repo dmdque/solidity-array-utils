@@ -9,8 +9,6 @@ import "../contracts/AddressArrayUtils.sol";
 contract TestAddressArrayUtils {
   using AddressArrayUtils for address[];
 
-  event LogAddress(address a);
-
   address[] _a;
   address[] _b;
 
@@ -61,10 +59,6 @@ contract TestAddressArrayUtils {
     bool ok = _a.reverse();
     Assert.isTrue(ok, "should be ok");
     Assert.equal(_a.length, 4, "reversed length should be 4");
-    LogAddress(_a[0]);
-    LogAddress(_a[1]);
-    LogAddress(_a[2]);
-    LogAddress(_a[3]);
     Assert.equal(_a[0], address(0x4), "element 0 should match");
     Assert.equal(_a[1], address(0x3), "element 1 should match");
     Assert.equal(_a[2], address(0x2), "element 2 should match");
