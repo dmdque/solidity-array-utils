@@ -1,14 +1,23 @@
+pragma solidity ^0.4.18;
+
+
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/AddressArrayUtils.sol";
 
+
 contract TestAddressArrayUtils {
   using AddressArrayUtils for address[];
+
+  event LogAddress(address a);
 
   address[] _a;
   address[] _b;
 
-  function beforeEach() {
+  function beforeEach() public {
+    _a.length = 0;
+    _b.length = 0;
+
     _a.push(address(0x1));
     _a.push(address(0x2));
     _a.push(address(0x3));
@@ -19,52 +28,56 @@ contract TestAddressArrayUtils {
     _b.push(address(0x10));
   }
 
-  function testIndexFindsItem() {
+  function testIndexFindsItem() public {
     uint result;
     bool ok;
     (result, ok) = _a.index(address(0x2));
-    assert(ok == true);
-    assert(result == 1);
+    Assert.isTrue(ok, "should be ok");
+    Assert.equal(result, 1, "should return index 1");
   }
 
-  function testIndexDoesNotFindItem() {
+  function testIndexDoesNotFindItem() public {
     uint result;
     bool ok;
     (result, ok) = _a.index(address(0x0));
-    assert(ok == false);
-    assert(result == 0);
+    Assert.isFalse(ok, "should not be ok");
+    Assert.equal(result, 0, "should return index 0");
   }
 
-  function testExtendExtends() {
+  function testExtendExtends() public {
     bool ok = _a.extend(_b);
-    assert(ok);
-    assert(_a.length == 7);
+    Assert.isTrue(ok, "should be ok");
+    Assert.equal(_a.length, 7, "extended length should be 7");
   }
 
-  function testExtendExtendsEmpty() {
+  function testExtendExtendsEmpty() public {
     address[] storage b;
     bool ok = _a.extend(b);
-    assert(ok);
-    assert(_a.length == 4);
+    Assert.isTrue(ok, "should be ok");
+    Assert.equal(_a.length, 4, "extended length should be 4");
   }
 
-  function testReverseEven() {
+  function testReverseEven() public {
     bool ok = _a.reverse();
-    assert(ok);
-    assert(_a.length == 4);
-    assert(_a[0] == address(0x4));
-    assert(_a[1] == address(0x3));
-    assert(_a[2] == address(0x2));
-    assert(_a[3] == address(0x1));
+    Assert.isTrue(ok, "should be ok");
+    Assert.equal(_a.length, 4, "reversed length should be 4");
+    LogAddress(_a[0]);
+    LogAddress(_a[1]);
+    LogAddress(_a[2]);
+    LogAddress(_a[3]);
+    Assert.equal(_a[0], address(0x4), "element 0 should match");
+    Assert.equal(_a[1], address(0x3), "element 1 should match");
+    Assert.equal(_a[2], address(0x2), "element 2 should match");
+    Assert.equal(_a[3], address(0x1), "element 3 should match");
   }
 
-  function testReverseOdd() {
+  function testReverseOdd() public {
     bool ok = _b.reverse();
-    assert(ok);
-    assert(_b.length == 3);
-    assert(_b[0] == address(0x10));
-    assert(_b[1] == address(0x9));
-    assert(_b[2] == address(0x8));
+    Assert.isTrue(ok, "should be ok");
+    Assert.equal(_b.length, 3, "reversed length should be 3");
+    Assert.equal(_b[0], address(0x10), "element 0 should match");
+    Assert.equal(_b[1], address(0x9), "element 1 should match");
+    Assert.equal(_b[2], address(0x8), "element 2 should match");
   }
 
 }

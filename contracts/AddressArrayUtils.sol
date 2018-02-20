@@ -4,7 +4,7 @@ pragma solidity ^0.4.18;
 library AddressArrayUtils {
 
     /// @return Returns index and ok of the first occurrence starting from index 0
-    function index(address[] addresses, address a) internal view returns (uint, bool) {
+    function index(address[] addresses, address a) internal pure returns (uint, bool) {
         for (uint i = 0; i < addresses.length; i++) {
             if (addresses[i] == a) {
                 return (i, true);
@@ -24,9 +24,10 @@ library AddressArrayUtils {
         address t;
         for (uint i = 0; i < a.length / 2; i++) {
             t = a[i];
-            a[i] = a[a.length - 1];
-            a[a.length - 1] = t;
+            a[i] = a[a.length - i];
+            a[a.length - i] = t;
         }
+        return true;
     }
 
 }
