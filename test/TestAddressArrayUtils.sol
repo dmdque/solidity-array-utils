@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.19;
 
 
 import "truffle/Assert.sol";
@@ -11,10 +11,12 @@ contract TestAddressArrayUtils {
 
     address[] _a;
     address[] _b;
+    address[] _c;
 
     function beforeEach() public {
         _a.length = 0;
         _b.length = 0;
+        _c.length = 0;
 
         _a.push(address(0x1));
         _a.push(address(0x2));
@@ -49,8 +51,7 @@ contract TestAddressArrayUtils {
     }
 
     function testExtendExtendsEmpty() public {
-        address[] storage b;
-        bool ok = _a.extend(b);
+        bool ok = _a.extend(_c);
         Assert.isTrue(ok, "should be ok");
         Assert.equal(_a.length, 4, "extended length should be 4");
     }

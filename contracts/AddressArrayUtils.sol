@@ -24,8 +24,8 @@ library AddressArrayUtils {
         address t;
         for (uint i = 0; i < a.length / 2; i++) {
             t = a[i];
-            a[i] = a[a.length - i];
-            a[a.length - i] = t;
+            a[i] = a[a.length - i - 1];
+            a[a.length - i - 1] = t;
         }
         return true;
     }
