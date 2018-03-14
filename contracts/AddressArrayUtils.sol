@@ -20,6 +20,7 @@ library AddressArrayUtils {
         return true;
     }
 
+    /// @dev Reverses address array in place
     function reverse(address[] storage a) internal returns (bool) {
         address t;
         for (uint i = 0; i < a.length / 2; i++) {
